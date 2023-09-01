@@ -12,5 +12,6 @@ public class UsuariosDto {
 	private String desNome;
 	@NotBlank
 	private String desSenha;
+	@NotBlank
 	private Integer indTipo;
 }
