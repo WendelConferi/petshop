@@ -10,7 +10,8 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Lista de usuários</h6>
+			<a href="/cadastroUsuarios" class="btn btn-primary" style="margin-right: 20px;">Novo</a>
+			<h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Lista de usuários</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -41,7 +42,8 @@
 						<tr th:each="usuario: ${Usuarios}">
 							<td th:text="${usuario.desNome}" />
 							<td th:text="${usuario.desCpf}" />
-							<td th:text="${usuario.indTipo == 3 ? 'Administrador' : 'Usuario' }" />
+							<td
+								th:text="${usuario.indTipo == 3 ? 'Administrador' : 'Usuario' }" />
 							<td th:text="${usuario.desSenha}" />
 							<td><a href="#" class="btn btn-warning">Alterar</a></td>
 							<td><a href="#" class="btn btn-danger">Excluir</a></td>
