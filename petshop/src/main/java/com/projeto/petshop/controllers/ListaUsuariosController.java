@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.projeto.petshop.dtos.UsuariosDto;
 import com.projeto.petshop.models.Usuarios;
 import com.projeto.petshop.services.UsuariosService;
+
+
+
 import com.projeto.petshop.converter.*;
 
 @Controller
@@ -41,5 +46,4 @@ public class ListaUsuariosController {
 
 		return "users/cadastro";
 	}
-	
 }

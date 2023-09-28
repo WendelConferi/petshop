@@ -41,7 +41,7 @@ public class UsuariosController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuariosService.save(usuario));
 	}
 	
-	@GetMapping
+	@GetMapping("/busca")
 	public ResponseEntity<List<Usuarios>> buscaUsuarios(){
 		return ResponseEntity.status(HttpStatus.OK).body(usuariosService.findAll());
 	}
