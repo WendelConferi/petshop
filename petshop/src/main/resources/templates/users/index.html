@@ -5,16 +5,18 @@
 
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 text-gray-800">Usuários</h1>
-
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<a href="/cadastroUsuarios" class="btn btn-primary" style="margin-right: 20px;">Novo</a>
-			<h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Lista de usuários</h6>
+			<a href="/cadastroUsuarios" class="btn btn-primary"
+				style="margin-right: 20px;">Novo</a>
+			<h6 class="m-0 font-weight-bold text-primary"
+				style="display: inline-block;">Lista de usuários</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<table class="table table-bordered" id="dataTable" width="100%"
+					cellspacing="0">
 					<thead>
 						<tr>
 							<th>Nome</th>
@@ -36,26 +38,53 @@
 						</tr>
 					</tfoot>
 					<tbody>
-
 						<tr th:each="usuario: ${Usuarios}">
 							<td th:text="${usuario.desNome}" />
-							<td th:text="${usuario.desCpf}" />
+							<td th:text="${usuario.desCpf}" class="cpf" />
 							<td
-								th:text="${usuario.indTipo == 3 ? 'Administrador' : 'Usuario' }" />
+								th:text="${usuario.indTipo == 2 ? 'Administrador' : 'Cliente' }" />
 							<td th:text="${usuario.desSenha}" />
 
 							<td><a href="#" class="btn btn-warning">Alterar</a></td>
-							<td><a href="#" class="btn btn-danger">Excluir</a></td>
-						</tr>
 
+
+							<td><a href="#" data-toggle="modal"
+								th:attr="data-target='#warning'+${usuario.desCpf}"
+								class="btn btn-danger">Excluir</a>
+
+								<div th:fragment="modal" class="modal fade"
+									th:id="'warning'+${usuario.desCpf}" tabindex="-1">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Confirmação
+													de exclusão</h5>
+												<button class="close" type="button" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Tem certeza que quer excluir o usuário <span
+													th:text="${usuario.desNome}"></span>
+											</div>
+											<div class="modal-footer">
+												<button class="btn btn-secondary" type="button"
+													data-dismiss="modal">Cancelar</button>
+												<a class="btn btn-danger"
+													th:onclick="'window.location.href = \'' + @{/excluiUsuario/{cpf}(cpf=${usuario.desCpf})} + '\''" method="delete"
+													>Excluir</a>
+											</div>
+										</div>
+									</div>
+								</div></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 </div>
 <!-- /.container-fluid -->
-
 
 <div th:replace="~{shared/footer}"></div>

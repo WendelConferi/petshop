@@ -21,6 +21,7 @@ public class UsuariosService {
 	
 	@Transactional
 	public Usuarios save(Usuarios usuario) {
+		usuario.setDesCpf(usuario.getDesCpf().replace(".", "").replace("-", ""));
 		return usuarioRepository.save(usuario);
 	}
 

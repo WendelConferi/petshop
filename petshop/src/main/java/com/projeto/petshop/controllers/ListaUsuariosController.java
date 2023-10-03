@@ -2,13 +2,17 @@ package com.projeto.petshop.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.projeto.petshop.dtos.UsuariosDto;
 import com.projeto.petshop.models.Usuarios;
@@ -46,4 +50,20 @@ public class ListaUsuariosController {
 
 		return "users/cadastro";
 	}
+	
+	@PostMapping("/criarUsuario")
+	public String criarUsuario(Usuarios usuario) {
+		usuariosService.save(usuario);
+		return "redirect:/listaUsuarios";
+	}
+	
+	@GetMapping("/excluiUsuario/{cpf}")
+	public String excluiUsuario(@PathVariable String cpf) {
+		Optional<Usuarios> usuario = usuariosService.findById(cpf);
+		
+		usuariosService.delete(usuario.get());
+		return "redirect:/listaUsuarios";
+	}
+	
+	
 }
