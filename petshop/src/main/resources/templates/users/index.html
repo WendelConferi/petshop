@@ -45,7 +45,7 @@
 								th:text="${usuario.indTipo == 2 ? 'Administrador' : 'Cliente' }" />
 							<td th:text="${usuario.desSenha}" />
 
-							<td><a href="#" class="btn btn-warning">Alterar</a></td>
+							<td><a th:onclick="'window.location.href = \'' + @{/editar/{cpf}(cpf=${usuario.desCpf})} + '\''" class="btn btn-warning">Alterar</a></td>
 
 
 							<td><a href="#" data-toggle="modal"

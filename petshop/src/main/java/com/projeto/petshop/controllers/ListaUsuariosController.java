@@ -65,5 +65,16 @@ public class ListaUsuariosController {
 		return "redirect:/listaUsuarios";
 	}
 	
+	@GetMapping("/editar/{cpf}")
+	public String buscaUsuario(@PathVariable String cpf, Model model) {
+		
+		Optional<Usuarios> user = usuariosService.findById(cpf);
+		
+		model.addAttribute("usuario", user);
+		
+		return "users/editar";
+	}
+	
+	
 	
 }
