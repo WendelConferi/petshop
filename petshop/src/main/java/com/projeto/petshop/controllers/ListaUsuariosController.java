@@ -69,12 +69,23 @@ public class ListaUsuariosController {
 	public String buscaUsuario(@PathVariable String cpf, Model model) {
 		
 		Optional<Usuarios> user = usuariosService.findById(cpf);
-		
-		model.addAttribute("usuario", user);
-		
+		try {
+			model.addAttribute("usuario", user.get());
+		} catch (Exception e) {
+			return "redirect:/listaUsuarios";
+		}
 		return "users/editar";
 	}
 	
-	
+	@PostMapping("/alterar/{cpf}")
+	public String alterarUsuario(@PathVariable String cpf, Usuarios user) {
+		
+		if(!usuariosService.exist(cpf)) {
+			return "redirect:/listaUsuarios";
+		}
+		usuariosService.save(user);
+			
+		return "redirect:/listaUsuarios";
+	}
 	
 }

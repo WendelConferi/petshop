@@ -37,4 +37,8 @@ public class UsuariosService {
 	public void delete(Usuarios usuario) {
 		usuarioRepository.delete(usuario);
 	}
+	
+	public boolean exist(String cpf){
+		return usuarioRepository.existsById(cpf);
+	}
 }

@@ -10,30 +10,30 @@
 	<!-- DataTales Example -->
 	<div class="row justify-content-center">
 		<div class="card shadow mb-4 py-3 px-5" style="width: 50%">
-			<form method="POST" th:action="@{'/usuarios/' + ${usuarios.desCpf} + 'atualizar'}" >
+			<form method="POST" th:action="@{'/alterar/' + ${usuario?.desCpf}}" >
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nome</label> <input type="text"
 						class="form-control" id="desNome"
-						placeholder="Nome completo" required name="desNome">
+						placeholder="Nome completo" required name="desNome" th:value="${usuario?.desNome}">
 				</div>
 
 				<div class="form-group">
 					<label for="exampleInputEmail1">CPF</label> <input type="text"
-						class="form-control cpf" placeholder="CPF válido" required name="desCpf" th:value="${usuario.desCpf}">
+						class="form-control cpf" placeholder="CPF válido" required name="desCpf" th:value="${usuario?.desCpf}">
 				</div>
 
 				<div class="form-group">
 					<label for="exampleInputPassword1">Senha</label> <input
 						type="password" class="form-control" id="exampleInputPassword1"
-						placeholder="Senha" required name="desSenha" th:value="${usuario.desSenha}">
+						placeholder="Senha" required name="desSenha" th:value="${usuario?.desSenha}">
 				</div>
 
 				<div class="form-group">
 					<label for="validationCustom04" class="form-label">Tipo de
 						usuário</label> <select class="form-control" id="indTipoUsuario"
-						name="indTipo" required th:value="${usuario.indTipo}">
-						<option value="1">Cliente</option>
-						<option value="2">Administrador</option>
+						name="indTipo" required>
+						<option value="1" th:selected="${usuario?.indTipo == 1}">Cliente</option>
+						<option value="2" th:selected="${usuario?.indTipo == 2}">Administrador</option>
 
 					</select>
 				</div>
